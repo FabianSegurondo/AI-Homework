@@ -1,0 +1,46 @@
+ protected double eval(STATE state, PLAYER player) {
+  if (game.isTerminal(state)) {
+   return game.getUtility(state, player);
+  } else {
+   maxDepthReached = true;
+   return this.heuristic(state, player);
+  }
+ }
+ 
+ private double heuristic(STATE state, PLAYER player) {
+  
+  System.out.println(state);
+  
+  int [][] tabla = tabla(state);
+  for (int i = 0; i < 3; i++){
+   for (int j = 0; j < 3; j++) {
+    System.out.print(tabla[i][j] + " ");
+   }
+   System.out.println();
+  }
+  System.out.println();
+  
+  int heuristica = sumaColumnas(tabla)+sumaDiagonales(tabla)+sumaFilas(tabla);
+  
+  return heuristica;
+ }
+ 
+ private int[][] tabla(STATE state) {
+  int[][] tb = {{5,5,5},{5,5,5},{5,5,5}}; //Por si hay algún fallo al introducir, que cante.
+  Scanner sc = new Scanner(state.toString());
+  sc.useDelimiter(" ");
+  int acumulador = 0;
+  while(sc.hasNext()) {
+   String c = sc.next();
+   
+   switch (c) {
+   case "-": case "\n-": tb[acumulador/3][acumulador%3] =  0;break;
+   case "X": case "\nX": tb[acumulador/3][acumulador%3] =  1;break;
+   case "O": case "\nO": tb[acumulador/3][acumulador%3] = -1;break;
+   }
+   
+   acumulador++;
+  }
+  
+  return tb;
+ }
