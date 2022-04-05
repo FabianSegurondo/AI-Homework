@@ -1,9 +1,15 @@
 #include <iostream>
 using namespace std;
 
+// Tablero y variable de símbolo
 static char board[3][3] = {{' ', ' ', ' '}, {' ', ' ', ' '}, {' ', ' ', ' '}}, ch1;
+
+// Variables de los jugadores
 string p1, p2;
+
+// Filas/Columnas
 int r, c;
+// Cantidad de movidas
 int alt = 0;
 
 // Se vacía el tablero para volver a jugar
@@ -15,7 +21,7 @@ void boardReset(){
 
 // Se imprime el tablero
 void printBoard(){
-    //system("cls");
+
     for(int i = 0; i < 3; i++){
         for(int j = 0; j < 3; j++){
             if(j == 0)
@@ -34,13 +40,13 @@ void printBoard(){
 bool isWinner(char ch4){
     // Todos los casos en los que el jugador gana
     return ((board[0][0] == ch4 && board[0][1] == ch4 && board[0][2] == ch4) ||
-     (board[1][0] == ch4 && board[1][1] == ch4 && board[1][2] == ch4) ||
-     (board[2][0] == ch4 && board[2][1] == ch4 && board[2][2] == ch4) ||
-     (board[0][0] == ch4 && board[1][0] == ch4 && board[2][0] == ch4) ||
-     (board[0][1] == ch4 && board[1][1] == ch4 && board[2][1] == ch4) ||
-     (board[0][2] == ch4 && board[1][2] == ch4 && board[2][2] == ch4) ||
-     (board[0][0] == ch4 && board[1][1] == ch4 && board[2][2] == ch4) ||
-     (board[0][2] == ch4 && board[1][1] == ch4 && board[2][0] == ch4));
+            (board[1][0] == ch4 && board[1][1] == ch4 && board[1][2] == ch4) ||
+            (board[2][0] == ch4 && board[2][1] == ch4 && board[2][2] == ch4) ||
+            (board[0][0] == ch4 && board[1][0] == ch4 && board[2][0] == ch4) ||
+            (board[0][1] == ch4 && board[1][1] == ch4 && board[2][1] == ch4) ||
+            (board[0][2] == ch4 && board[1][2] == ch4 && board[2][2] == ch4) ||
+            (board[0][0] == ch4 && board[1][1] == ch4 && board[2][2] == ch4) ||
+            (board[0][2] == ch4 && board[1][1] == ch4 && board[2][0] == ch4));
 }
 
 // Se verifica si el tablero está lleno
@@ -57,7 +63,7 @@ void makeMove(char c1){
     if(board[r-1][c-1] == ' ')
         board[r-1][c-1] = c1;
     else{
-        cout << "\nThis Position is Already Occupied!\n\n";
+        cout << "\nEsta posición ya esta ocupada!\n\n";
         alt--;
     }
 }
@@ -85,7 +91,7 @@ void playGame(){
             cout << "Numero de fila que deseas jugar: ";
             cin >> r;
             if(r < 1 || r > 3)
-                cout << "Un numero entre 1 to 3\n";
+                cout << "Un numero entre 1 y 3\n";
             else
                 break;
         }
@@ -103,7 +109,7 @@ int main(){
         cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
         cout << "\t\t\tBienvenidos al juego de 3 EN RAYA\n";
         cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
-        cout << "\nNombre del promer jugador: ";
+        cout << "\nNombre del primer jugador: ";
         cin >> p1;
         cout << "Simbolo asignado al jugador " << p1 << " es 'X'\n";
         cout << "\nNombre del segundo jugador: ";
